@@ -1,5 +1,8 @@
 package fr.afpa.employees;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 /*
 Objectif :
 L’objectif de ce TP est de concevoir un programme en console basé sur une approche objet et
@@ -20,14 +23,17 @@ class Employee
 	private String lastName;
 	private String firstName;
 	private double salary;
+	private LocalDate birthDate; 
 	private final int socialRate = 30;
+	
 
 	// TODO compléter le constructeur de la classe
-	public Employee(String registrationNumber, String lastName, String firstName, double salary) {
+	public Employee(String registrationNumber, String lastName, String firstName, double salary, String birthDate) {
 		this.registrationNumber = registrationNumber;
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.salary = salary;
+		this.birthDate = LocalDate.parse(birthDate);
 	
 	}
 
@@ -44,6 +50,9 @@ class Employee
 	}			
 	public double getSalary() {
 				return salary;
+	}
+	public LocalDate getBirthDate() {
+				return birthDate;
 	}
 
 
@@ -63,16 +72,59 @@ class Employee
 		this.salary = salary;
 	}
 
-
-
-
-	// TODO implémenter la méthode "toString()" qui renvoie une chaîne de caractère qui représente un objet de la classe employé
-	// plus d'information sur la méthode "toString()" -> https://codegym.cc/fr/groups/posts/fr.986.mthode-java-tostring
-
-	@Override
-	public String toString() {
-		return "Employee [registrationNumber=" + registrationNumber + ", lastName=" + lastName + ", firstName="
-				+ firstName + ", salary=" + salary + ", socialRate=" + socialRate + "]";
+	public void setBirthDate(LocalDate birthDate) {
+		this.birthDate = birthDate;
 	}
 
+
+	/** */ TODO implémenter la méthode "toString()" qui renvoie une chaîne de caractère qui représente un objet de la classe employé
+	*	 plus d'information sur la méthode "toString()" -> https://codegym.cc/fr/groups/posts/fr.986.mthode-java-tostring
+
+	@Override
+	public String toString() {// réimplémentationde la classe to string.
+		return "Employee [registrationNumber=" + registrationNumber + ", lastName=" + lastName + ", firstName="
+				+ firstName + ", salary=" + salary + ", birthDate=" + birthDate + ", Salaire Net=" + NetSalary() + "]";
+	}
+
+	public double NetSalary(){
+		 
+		return this.salary - (this.salary*(this.socialRate/100.0));
+	} 
+// à commenter correctement!!!!!!!!!!!
+	public long DayBeforeBirthdate (){
+		LocalDate currenDate = LocalDate.now();
+		LocalDate nextBirthDate = this.birthDate.withYear(currenDate.getYear());
+
+		if(nextBirthDate.isBefore(currenDate) || nextBirthDate.isEqual(currenDate)){
+			nextBirthDate = nextBirthDate.plusYears(1);
+		}
+
+		return ChronoUnit.DAYS.between(currenDate, nextBirthDate);
+
+	}
+/**
+ * objectif vérifier la validité du matricule
+ * Le matricule est une valeur composée de 7 caractères observant les règles suivantes
+ *  nnXXXnn où n est un chiffre et X un caractère alphabétique (par exemple, le matricule « 11A 22 » 
+ * est correct,« Y5 22 » est incorrect). 
+ * Dans un premier temps, cette contrainte ne sera pas prise en compte.
+ * 
+Le nom et le prénom :
+le doit pas être vide et ne doit pas contenir de chiffres
+Le format de la date :
+ */
+	 private boolean checkRegistrationNumber(String inputTocheck){
+		String inputToCheck = "12xxx65"
+for (int i = 0; i < inputToCheck.length(); i++) {
+	char ch = inputToCheck.charAt(i);
+	if (1==0 || i==1|| i==5 || i==6){
+		if(Character.isDigit(ch)){
+			return true;
+		}
+	}else {
+		return false;
+	}
+	
+}
+	}
 }
