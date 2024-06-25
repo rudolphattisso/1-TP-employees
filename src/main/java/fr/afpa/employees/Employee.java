@@ -1,8 +1,9 @@
 package fr.afpa.employees;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
-
+import java.util.ArrayList;
 
 /*
 Objectif :
@@ -20,7 +21,7 @@ class Employee {
 	 */
 	private String registrationNumber;
 
-	//attributs comme présenté dans le PDF
+	// attributs comme présenté dans le PDF
 	private String lastName;
 	private String firstName;
 	private double salary;
@@ -39,7 +40,6 @@ class Employee {
 
 	// setters et getters de la classe (permet d'accéder aux
 	// attributs privés)
-
 
 	// getter
 	public String getRegistrationNumber() {
@@ -62,11 +62,11 @@ class Employee {
 		return birthDate;
 	}
 
-	// setter
+	// ETTERS
 
-	public void setRegistrationNumber(String registrationNumber)  throws Exception{
+	public void setRegistrationNumber(String registrationNumber) throws Exception {
 		// A ce niveau, tentative de modification du matricule
-		// Nous devons VERIFIER le matricule !
+		// VERIFIER le matricule !
 		// -----> PROGRAMMATION DEFENSIVE = vérification des paramètres d'entrée ->
 		// registrationNumber
 		boolean isRegistrationNumber = checkRegistrationNumber(registrationNumber);
@@ -77,44 +77,39 @@ class Employee {
 			this.registrationNumber = registrationNumber;
 		} else {
 			// FAUX donc on fait quelque chose pour traiter ce cas
-			// ??? (indice/solution : on jette une exception)
-			//Exception = erreur
+			// solution : on jette une exception)Exception = erreur
 			throw new Exception("Mauvais format du matricule");
-		
+
 		}
 	}
 
-	public void setLastname(String lastName) throws Exception{
+	public void setLastname(String lastName) throws Exception {
 		this.lastName = lastName;
 		boolean isLastname = checkFirstName(lastName);
-		if (isLastname = true){
+		if (isLastname = true) {
 			this.firstName = firstName;
-		}else{
+		} else {
 			throw new Exception("Nom écrit dans le mauvais format");
 		}
-		
 
 	}
 
-	public void setSalary(int salary) {
+	public void setSalary(double salary) {
 		this.salary = salary;
 	}
 
 	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
-	
+
 	}
 
-
-
-	public void setFirstName(String firstName) throws Exception{
+	public void setFirstName(String firstName) throws Exception {
 		boolean isFirstName = checkFirstName(firstName);
-		if (isFirstName = true){
+		if (isFirstName = true) {
 			this.firstName = firstName;
-		}else{
+		} else {
 			throw new Exception("Mauvais format de prénom");
 		}
-		
 
 	}
 
@@ -122,31 +117,27 @@ class Employee {
 		this.salary = salary;
 	}
 
-	public void setBirthDate(LocalDate birthDate) {
-		this.birthDate = birthDate;
-	}
-
-	
-
-	/**TODO implémenter
-	la méthode"toString()"
-	qui renvoie
-	une chaîne
-	de caractère*
-	qui représente
-	un objet
-	de la
-	classe employé*plus d'information sur
-	la méthode"toString()"-> https:// codegym.cc/fr/groups/posts/fr.986.mthode-java-tostring
-	*/
+	/**
+	 * TODO implémenter
+	 * la méthode"toString()"
+	 * qui renvoie
+	 * une chaîne
+	 * de caractère*
+	 * qui représente
+	 * un objet
+	 * de la
+	 * classe employé*plus d'information sur
+	 * la méthode"toString()"-> https://
+	 * codegym.cc/fr/groups/posts/fr.986.mthode-java-tostring
+	 */
 
 	@Override
 	public String toString() {// réimplémentationde la classe to string.
 		return "Employee [registrationNumber=" + registrationNumber + ", lastName=" + lastName + ", firstName="
-				+ firstName + ", salary=" + salary + ", birthDate=" + birthDate + ", Salaire Net=" + NetSalary() + "]";
+				+ firstName + ", salary=" + salary + ", birthDate=" + birthDate + ", Salaire Net=" + netSalary() + "]";
 	}
 
-	public double NetSalary() {
+	public double netSalary() {
 
 		return this.salary - (this.salary * (this.socialRate / 100.0));
 	}
@@ -211,7 +202,7 @@ class Employee {
 					isRegistrationNumber = true;
 				} else { // attention, ce n'est pas un chiffre
 					return false; // return false permet d'arreter aussitôt lorsque la boucle détecte une erreur.
-					//elle stockera la variable dans la le retour tout en bas de la fonction.
+					// elle stockera la variable dans la le retour tout en bas de la fonction.
 				}
 
 			} else { // cas de la position 2, 3 ou 4 -> vérification de letter
@@ -228,40 +219,38 @@ class Employee {
 		return isRegistrationNumber;
 	}
 
+	/**
+	 * Vérifie qu'une chaîne de caractères passée en paramètre est un prénom
+	 * 
+	 * Règles de vérification :
+	 * Un prénom ne doit pas comporter de chiffres, ni de caractère spéciale tel que
+	 * '#', '$', '%', '/, '\'
+	 * 
+	 * @param inputToCheck La chaîne de caractère à vérifier
+	 * @return VRAI s'il s'agit d'un prénom correctement formaté, FAUX sinon
+	 */
 
+	private boolean checkFirstName(String inputToCheck) {
 
-	    /**
-     * Vérifie qu'une chaîne de caractères passée en paramètre est un prénom
-     * 
-     * Règles de vérification :
-     * Un prénom ne doit pas comporter de chiffres, ni de caractère spéciale tel que '#', '$', '%', '/, '\'
-     * 
-     * @param inputToCheck La chaîne de caractère à vérifier
-     * @return VRAI s'il s'agit d'un prénom correctement formaté, FAUX sinon
-     */
-    
-	
-	 private boolean checkFirstName(String inputToCheck) {
-    
-        // déclaration du booléen qui va stocker le résultat de la vérification
-        // VRAI -> la chaîne de caractères passée en paramètre est un matricule correctement formaté
-        // FAUX -> la chaîne de caractères passée en paramètre est un matricule pas bien formaté
-        boolean isFistName= false;
+		// déclaration du booléen qui va stocker le résultat de la vérification
+		// VRAI -> la chaîne de caractères passée en paramètre est un matricule
+		// correctement formaté
+		// FAUX -> la chaîne de caractères passée en paramètre est un matricule pas bien
+		// formaté
+		boolean isFistName = false;
 
-		
-	
+		for (int index = 0; index < inputToCheck.length(); index++) {
+			// index = longueur de intupToCheck en fonction de la taille du prénom
+			char ch = inputToCheck.charAt(index);
+			// condition disant que si le caractères est different des caractère spéciaciaux
+			// le résultat est vrai sinon retourne faux.
+			if (ch != '#' || ch != '$' || ch != '/' || ch != '\'') {
+				isFistName = true;
 
-        for (int index = 0; index < inputToCheck.length(); index++) {
-				// index = longueur de intupToCheck en fonction de la taille du prénom
-				char ch = inputToCheck.charAt(index);
-			// condition disant que si le caractères est different des caractère spéciaciaux le résultat est vrai sinon retourne faux.
-			if (ch != '#' || ch !='$'||ch != '/' ||ch != '\'')  {
-			isFistName = true;
-
-			}else{
+			} else {
 				return false;
 			}
-				
+
 			if (Character.isLetter(ch)) {
 				isFistName = true;
 			} else {
@@ -270,6 +259,35 @@ class Employee {
 
 		}
 		return isFistName;
-    }
+	}
 
+	private boolean checkLastName(String inputToCheck) {
+
+		boolean isLastName = false;
+
+		for (int index = 0; index < inputToCheck.length(); index++) {
+			// index = longueur de intupToCheck en fonction de la taille du prénom
+			char ch = inputToCheck.charAt(index);
+			// condition disant que si le caractères est different des caractère
+			// spéciaciaux le résultat est vrai sinon retourne faux.
+			if (ch != '#' || ch != '$' || ch != '/' || ch != '\'') {
+				isLastName = true;
+
+			} else {
+				return false;
+			}
+
+			if (Character.isLetter(ch)) {
+				isLastName = true;
+			} else {
+				return false;
+			}
+
+		}
+		return isLastName;
+	}
+
+
+		
+	
 }
