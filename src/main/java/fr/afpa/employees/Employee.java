@@ -35,7 +35,12 @@ class Employee {
 		this.firstName = firstName;
 		this.salary = salary;
 		this.birthDate = LocalDate.parse(birthDate);
-
+	}
+	
+	@Override
+	public String toString() {// réimplémentationde la classe to string.
+		return "Employee [registrationNumber=" + registrationNumber + ", lastName=" + lastName + ", firstName="
+				+ firstName + ", salary=" + salary + ", birthDate=" + birthDate + ", Salaire Net=" + netSalary() + "]";
 	}
 
 	// setters et getters de la classe (permet d'accéder aux
@@ -43,26 +48,26 @@ class Employee {
 
 	// getter
 	public String getRegistrationNumber() {
-		return registrationNumber;
+		return this.registrationNumber;
 	}
 
 	public String getLastName() {
-		return lastName;
+		return this.lastName;
 	}
 
 	public String getFirstName() {
-		return firstName;
+		return this.firstName;
 	}
 
 	public double getSalary() {
-		return salary;
+		return this.salary;
 	}
 
 	public LocalDate getBirthDate() {
-		return birthDate;
+		return this.birthDate;
 	}
 
-	// ETTERS
+	// SETTERS
 
 	public void setRegistrationNumber(String registrationNumber) throws Exception {
 		// A ce niveau, tentative de modification du matricule
@@ -131,11 +136,6 @@ class Employee {
 	 * codegym.cc/fr/groups/posts/fr.986.mthode-java-tostring
 	 */
 
-	@Override
-	public String toString() {// réimplémentationde la classe to string.
-		return "Employee [registrationNumber=" + registrationNumber + ", lastName=" + lastName + ", firstName="
-				+ firstName + ", salary=" + salary + ", birthDate=" + birthDate + ", Salaire Net=" + netSalary() + "]";
-	}
 
 	public double netSalary() {
 
