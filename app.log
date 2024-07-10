@@ -1,0 +1,9 @@
+2024-07-10 10:05:51 TRACE EmployeeMain:25 - Samantha
+2024-07-10 10:05:51 TRACE EmployeeMain:27 - Samantha
+2024-07-10 10:05:51 TRACE EmployeeMain:28 - Employee [registrationNumber=11AAA33, lastName=Shazam, firstName=Samantha, salary=1800.0, birthDate=1994-12-12, Salaire Net=1260.0]
+2024-07-10 10:05:51 TRACE EmployeeMain:29 - 10552.92
+2024-07-10 10:05:51 TRACE EmployeeMain:35 - 11AAA33
+2024-07-10 10:05:51 TRACE EmployeeMain:37 - Employee [registrationNumber=11AAA33, lastName=Shazam, firstName=Samantha, salary=1800.0, birthDate=1994-12-12, Salaire Net=1260.0]
+2024-07-10 10:05:51 TRACE EmployeeMain:54 - Employee [registrationNumber=11AAA33, lastName=Shazam, firstName=Samantha, salary=1800.0, birthDate=1994-12-12, Salaire Net=1260.0]
+2024-07-10 10:05:51 TRACE EmployeeMain:54 - Employee [registrationNumber=jlfj16, lastName=NONO, firstName=Zunon, salary=15075.6, birthDate=1995-02-23, Salaire Net=10552.92]
+2024-07-10 10:05:51 TRACE EmployeeMain:54 - Employee [registrationNumber=jlfj17, lastName=NONO, firstName=fraqua, salary=1560.7, birthDate=1996-02-24, Salaire Net=1092.49]

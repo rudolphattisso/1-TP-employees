@@ -1,0 +1,21 @@
+<Configuration status="warn">
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout
+                pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />
+        </Console>
+        <File name="FileLog" fileName="app.log" append="false">
+            <PatternLayout
+                pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />
+          </File>
+    </Appenders>
+    <Loggers>
+        <Root level="TRACE" additivity="true">
+            <AppenderRef ref="console" />
+        </Root>
+        <Logger name="fr.afpa.employees" level="TRACE" additivity="true">
+            <AppenderRef ref="FileLog" />
+        </Logger>
+    </Loggers>
+</Configuration>
+        
